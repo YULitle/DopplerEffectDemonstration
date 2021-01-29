@@ -4,12 +4,15 @@ var lastWaveX;
 var lastWaveY;
 var delay = 0;
 let v;
+
+// Each wave is an object. Each object is stored in the wavelist array. This allows me to update their position and to delete them when they get too big and are no longer useful.
 class waves {
   constructor(x, y) {
     this.x = x;
     this.y = y
     this.r = 5;
   }
+	//Draw the circle again with a larger radius. Maybe the change in radius should be edited too?
   refresh() {
     noFill();
     this.r += 10;
@@ -18,6 +21,7 @@ class waves {
 
 }
 
+//Create canvas and sliders
 function setup() {
   createCanvas(800, 800);
   frameRate(30);
@@ -32,9 +36,12 @@ function setup() {
 
 function draw() {
   background(240);
+
+	//adjust framerate based on slider value
   frameRate(fr.value());
+	//push up the delay value
   delay++;
-  
+  //Draw all circles objects. Keep track of the last one because it is the one in the center.
   for (let i = 0; i < wavelist.length; i++) {
     wavelist[i].refresh();
     if (wavelist[i].r > 3 * height) {
@@ -43,6 +50,8 @@ function draw() {
     lastWaveX = wavelist[i].x;
     lastWaveY = wavelist[i].y;
   }
+
+	// When the delay counter reaches a multiple of the frequency we add a new circle where the last one was placed. We offset it if the arrow keys are pressed.
   if (delay % f.value() == 0) {
     if (keyIsDown(LEFT_ARROW)) {
       wavelist.push(new waves(lastWaveX - v.value(), lastWaveY));
@@ -56,10 +65,10 @@ function draw() {
       wavelist.push(new waves(lastWaveX, lastWaveY));
     }
   }
+	// This keeps the size of the delay counter in check
   if (delay>f.value()){delay=0;}
   // Formatting the looks of the top and bottom textuals
   fill(0);
-  
   textSize(16);
   textStyle(BOLD);fill(255);
   rect(0,height-50,450,50);fill(0);
@@ -84,7 +93,8 @@ function draw() {
 }
 
 function mouseClicked() {
-  if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 50) {
+  // If the Pause button is pressed then the loop is paused.	
+	if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 50) {
     if (!paused) {
       noLoop();
       paused = true;
