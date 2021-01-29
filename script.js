@@ -89,7 +89,6 @@ function draw() {
   textStyle(NORMAL);
   text('Pause', 60, 41);
   text('Doppler Effect', width - 140, 41);
-  
 }
 
 function mouseClicked() {
