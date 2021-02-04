@@ -1,5 +1,10 @@
-The "frequency" doesn't match actualy frequency. It is inverted. Also, the frame rate messes with the appearance of the frequency, of course. But I plan on setting the frame rate at some high value and then only allowing the frequency to change.
+## Doppler Effect Simulator
+Use the arrow keys to move the source around. The pause button works. The frequency slider is inverted, but can give you the idea that you want.
 
-I'd like to add a color coding where the color matched the frequency of light.
+### Future work:
+- [ ] Fix the frequency issue.
+- [ ] Implement a color scheme setting that represents the visible light spectrum.
+- [ ] Setting that allows the source to remain focused in the center
 
 [Main Page](https://yulitle.github.io/DopplerEffectDemonstration)
+
